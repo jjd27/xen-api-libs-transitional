@@ -19,6 +19,10 @@ exception Http_request_rejected of string
 (** Thrown when we get a specific HTTP failure *)
 exception Http_error of string * string
 
+val http_rpc_send_query: Unix.file_descr -> Http.Request.t -> unit
+
+val http_rpc_recv_response: bool -> string -> Unix.file_descr -> Http.Response.t
+
 (** [response_of_fd fd] returns an HTTP response read from fd, or None *)
 val response_of_fd: ?use_fastpath:bool -> Unix.file_descr -> Http.Response.t option
 
